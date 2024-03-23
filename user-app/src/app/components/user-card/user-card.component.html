@@ -1,13 +1,16 @@
-<div *ngFor="let user1 of users">
+<div class="main">
+<div *ngFor="let user1 of users" class="user-card">
 
   <h3>
     <a
       [title]="user1.name + ' details'"
       [routerLink]="['/users', user1.id]">
-      {{ user1.name }}
+      {{ user1.name | uppercase }}
     </a>
   </h3>
 
+
+</div>
 
 </div>
 
