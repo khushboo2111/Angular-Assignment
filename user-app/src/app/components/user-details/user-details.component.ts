@@ -11,9 +11,10 @@ import { Subscription } from 'rxjs/internal/Subscription';
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css',
 })
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent implements OnInit,OnDestroy {
   user: User | undefined;
-  //private subscription: Subscription | undefined;
+  private subscription: Subscription | undefined;
+ // userService: any;
   constructor(private route: ActivatedRoute) {}
 
 
@@ -23,11 +24,14 @@ export class UserDetailsComponent implements OnInit {
     this.user = users.find(
       (user: { id: number; }) => user.id === userIdFromRoute
     );
+    // this.subscription = this.userService.getUserById(userIdFromRoute).subscribe((user: User | undefined) => {
+    //   console.log(user);
+    // });
   }
-  // ngOnDestroy() {
-  //   if (this.subscription) {
-  //     this.subscription.unsubscribe();
-  //   }
-  // }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
 }
