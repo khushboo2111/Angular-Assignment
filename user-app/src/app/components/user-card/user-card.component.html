@@ -1,1 +1,14 @@
-<p>user-card works!</p>
+<div *ngFor="let user1 of users">
+
+  <h3>
+    <a
+      [title]="user1.name + ' details'"
+      [routerLink]="['/users', user1.id]">
+      {{ user1.name }}
+    </a>
+  </h3>
+
+
+</div>
+
+
