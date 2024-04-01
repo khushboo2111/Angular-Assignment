@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { User } from '../../User';
 import { UserFetchService } from '../../UserFetchService';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { Subscription } from 'rxjs/internal/Subscription';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit{
 
 
     users: User[] = [];
-
+    private subscription: Subscription | undefined;
     httpclient =inject(HttpClient);
     uds = inject(UserFetchService);
 
@@ -33,4 +34,10 @@ export class HomeComponent implements OnInit{
         this.uds.add(this.users);
       });
     }
+    ngOnDestroy() {
+      if (this.subscription) {
+        this.subscription.unsubscribe();
+      }
+    }
+
   }
