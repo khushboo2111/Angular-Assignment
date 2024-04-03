@@ -6,15 +6,15 @@ import { User } from './User';
 })
 export class UserFetchService {
   constructor() { }
-  userdata_list: User[] = [];
+  users: User[] = [];
 
   add(arr: User[])
   {
-    this.userdata_list = arr;
+    this.users = arr;
   }
 
   getUser(name: string) : User | undefined
   {
-    return this.userdata_list.find(Ud => Ud.name==name);
+    return this.users.find(Ud => Ud.name==name);
   }
 }
